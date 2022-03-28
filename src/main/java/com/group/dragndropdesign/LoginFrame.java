@@ -6,12 +6,14 @@ package com.group.dragndropdesign;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import databaseConnector.CheckLogin;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -207,6 +209,20 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String username = jTextField1.getText();
+        if (username.length() > 0 && !username.isBlank()){
+            String password = String.valueOf(jPasswordField1.getPassword());
+            if (password.length()>0){
+                CheckLogin ck = new CheckLogin();
+                boolean isSuccess = ck.checkAccount(username, password);
+                if (isSuccess){
+                    JOptionPane.showMessageDialog(this,"Dang nhap thanh cong !");
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Dang nhap that bai !");
+                }
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
